@@ -31,6 +31,10 @@ Example of Tabs with Automatic Activation
 		  <p>A complex complex complex.</p>
 	</div>
 </div>
+
+<script type="text/javascript">
+    var tabs = new Tabs();
+</script>
 ```
 
 Implementation on a Joomla! category blog override
@@ -60,6 +64,9 @@ Implementation on a Joomla! category blog override
 	</div>
 <?endif; ?>	
 
+<script type="text/javascript">
+    var tabs = new Tabs();
+</script>
 ```
 
 # Credits
