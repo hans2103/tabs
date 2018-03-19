@@ -33,6 +33,21 @@ module.exports = function(grunt) {
             }
         },
 
+        // Copy
+        copy: {
+            options: {
+                separator: '\r\n'
+            },
+            site: {
+                files: {
+                    "dist/js/tabs.js": [
+                        "src/js/tabs.js"
+                    ]
+                }
+            }
+        },
+
+
         // CSSmin
         cssmin: {
             options: {
@@ -78,7 +93,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    "dist/js/tabs.js": [
+                    "dist/js/tabs.min.js": [
                         "src/js/tabs.js"
                     ]
                 }
@@ -100,7 +115,7 @@ module.exports = function(grunt) {
             },
             javascript: {
                 files: ["src/js/*.js"],
-                tasks: ["uglify"],
+                tasks: ["copy", "uglify"],
                 options: {
                     interrupt: true,
                     atBegin: true
