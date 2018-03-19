@@ -37,8 +37,7 @@
     // Bind listeners
     for (i = 0; i < tabs.length; ++i) {
         addListeners(i);
-    }
-    ;
+    };
 
     function addListeners(index) {
         tabs[index].addEventListener('click', clickEventListener);
@@ -93,8 +92,7 @@
             case keys.delete:
                 determineDeletable(event);
                 break;
-        }
-        ;
+        };
     };
 
     // When a tablistâ€™s aria-orientation is set to vertical,
@@ -109,21 +107,17 @@
             if (key === keys.up || key === keys.down) {
                 event.preventDefault();
                 proceed = true;
-            }
-            ;
+            };
         }
         else {
             if (key === keys.left || key === keys.right) {
                 proceed = true;
-            }
-            ;
-        }
-        ;
+            };
+        };
 
         if (proceed) {
             switchTabOnArrowPress(event);
-        }
-        ;
+        };
     };
 
     // Either focus the next, previous, first, or last tab
@@ -133,8 +127,7 @@
 
         for (x = 0; x < tabs.length; x++) {
             tabs[x].addEventListener('focus', focusEventHandler);
-        }
-        ;
+        };
 
         if (direction[pressed]) {
             var target = event.target;
@@ -147,12 +140,9 @@
                 }
                 else if (pressed === keys.right || pressed == keys.down) {
                     focusFirstTab();
-                }
-                ;
-            }
-            ;
-        }
-        ;
+                };
+            };
+        };
     };
 
     // Activates any given tab panel
@@ -176,8 +166,7 @@
         // Set focus when required
         if (setFocus) {
             tab.focus();
-        }
-        ;
+        };
     };
 
     // Deactivate all tabs and tab panels
@@ -186,13 +175,11 @@
             tabs[t].setAttribute('tabindex', '-1');
             tabs[t].setAttribute('aria-selected', 'false');
             tabs[t].removeEventListener('focus', focusEventHandler);
-        }
-        ;
+        };
 
         for (p = 0; p < panels.length; p++) {
             panels[p].setAttribute('hidden', 'hidden');
-        }
-        ;
+        };
     };
 
     // Make a guess
@@ -222,10 +209,8 @@
             }
             else {
                 activateTab(tabs[target.index - 1]);
-            }
-            ;
-        }
-        ;
+            };
+        };
     };
 
     // Deletes a tab and its panel
@@ -251,10 +236,8 @@
             else {
                 // If no value is specified, default to 300ms
                 delay = 300;
-            }
-            ;
-        }
-        ;
+            };
+        };
 
         return delay;
     };
@@ -272,7 +255,20 @@
 
         if (target === focused) {
             activateTab(target, false);
-        }
-        ;
+        };
     };
+
+
+    // When URL contains hash of an existing ID, activateTab is fired to activate it
+    if (window.location.hash) {
+        var hash = window.location.hash.substr(1);
+        var tab = document.getElementById(hash);
+
+        if (tab === null) {
+            return;
+        }
+
+        activateTab(tab, false);
+    };
+
 }());
