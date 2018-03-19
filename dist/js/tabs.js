@@ -1,8 +1,16 @@
-/*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
-(function () {
+/**
+ *
+ *  Tabs
+ *  An example of Tabs with Automatic Activation by W3.org, adjusted by Hans Kuijpers
+ *  http://hans2103.github.io/tabs
+ *
+ *  This content is licensed according to the W3C Software License at
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ */
+
+var Tabs = function() {
+
     var tablist = document.querySelectorAll('[role="tablist"]')[0];
     var tabs;
     var panels;
@@ -270,4 +278,4 @@
         activateTab(tab, false);
     }
 
-}());
+};
