@@ -1,0 +1,132 @@
+// variables
+$base-border-color: #dcdcdc !default;
+$base-border-radius: 3px !default;
+$base-background-color: #fff !default;
+$base-spacing: 1.5em !default;
+$active-color: blue !default;
+$action-color: orange !default;
+$dark-gray: #333 !default;
+$light-gray: #ddd !default;
+$medium-screen: 40em !default;
+$gutter: 10px !default;
+$tab-border: 1px solid $base-border-color;
+$tab-content-background: lighten($light-gray, 10);
+$tab-active-background: $tab-content-background;
+$tab-inactive-color: $base-background-color;
+$tab-mode: $medium-screen;
+
+.tabs {
+
+}
+
+[role="tablist"] {
+  margin: 0 0 -.1em;
+  overflow: visible;
+}
+
+[role="tab"] {
+  position: relative;
+  margin: 0;
+  padding: ($base-spacing / 2) ($gutter);
+  border: $tab-border;
+  box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+  color: $dark-gray;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  background: $base-background-color;
+
+  @media(min-width: $tab-mode) {
+    border-top-left-radius: $base-border-radius;
+    border-top-right-radius: $base-border-radius;
+    display: inline-block;
+  }
+
+  &:hover,
+  &:focus,
+  &[aria-selected="true"] {
+    &::before {
+      position: absolute;
+      bottom: 100%;
+      right: -1px;
+      left: -1px;
+      border-top-left-radius: $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+      border-top: 3px solid $action-color;
+      content: '';
+    }
+  }
+
+  &[aria-selected="true"] {
+    border-radius: 0;
+    background: $tab-active-background;
+    outline: 0;
+
+    &:not(:focus):not(:hover)::before {
+      border-top: 5px solid $active-color;
+    }
+
+    &::after {
+      position: absolute;
+      z-index: 3;
+      bottom: -1px;
+      right: 0;
+      left: 0;
+      height: .3em;
+      background: $tab-active-background;
+      box-shadow: none;
+      content: '';
+    }
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    outline: 0;
+    border-radius: 0;
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      border-color: $action-color;
+    }
+  }
+}
+
+[role="tabpanel"] {
+  position: relative;
+  z-index: 2;
+  padding: $base-spacing $gutter;
+  border: $tab-border;
+  border-top-right-radius: $base-border-radius;
+  border-bottom-left-radius: $base-border-radius;
+  border-bottom-right-radius: $base-border-radius;
+  box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+  background: $tab-content-background;
+
+  &:focus {
+    border-color: $action-color;
+    box-shadow: 0 0 .2em color(orange, base);
+    outline: 0;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: -1px;
+      left: -1px;
+      border-bottom: 3px solid $action-color;
+      border-bottom-left-radius: $base-border-radius;
+      border-bottom-right-radius: $base-border-radius;
+      content: '';
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  * + p {
+    margin-top: 1em;
+  }
+}

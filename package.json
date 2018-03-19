@@ -1,0 +1,27 @@
+{
+  "name": "Tabs",
+  "description": "Example of Tabs with Automatic Activation",
+  "version": "1.0.0",
+  "homepage": "https://hans2103.github.io/tabs/",
+  "author": "https://github.com/hans2103/tabs/graphs/contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hans2103/tabs/"
+  },
+  "bugs": {
+    "url": "https://github.com/hans2103/tabs/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "caniuse-db": "*",
+    "grunt": "^1.0.2",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.1.0",
+    "jit-grunt": "^0.10.0",
+    "time-grunt": "^1.4.0"
+  }
+}
