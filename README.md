@@ -64,5 +64,5 @@ Implementation on a Joomla! category blog override
 ```
 
 # Credits
-This repository tabs is an forked and adjusted [example of tabs with automatice activation from WAI ARIA Practices by W3.org](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/#tabpanel). I've added the ability to direct linking to a specific tab. The original files are located on the [Github repo aria-practices](https://github.com/w3c/aria-practices/tree/master/examples/tabs) of W3c.
+This [Github repository Tabs](https://github.com/hans2103/tabs) is a forked and adjusted [example of tabs with automatice activation from WAI ARIA Practices by W3.org](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/#tabpanel). I've added the ability to direct linking to a specific tab. The original files are located on the [Github repo aria-practices](https://github.com/w3c/aria-practices/tree/master/examples/tabs) of W3c.
 
