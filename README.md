@@ -6,8 +6,7 @@ Example of Tabs with Automatic Activation
 
 ## Features
 * Powered by JS
-* transitions by CSS
-* Bare bones, no styling added, you have to do that yourself, see demo page for demos
+* Styling by CSS
 
 ## Use
 
