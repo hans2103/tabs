@@ -1,28 +1,57 @@
 {
-  "name": "Tabs",
+  "name": "tabs",
+  "version": "1.3.0",
+  "license": "GPL-3.0",
   "description": "Example of Tabs with Automatic Activation",
-  "version": "1.2.0",
-  "homepage": "https://hans2103.github.io/tabs/",
-  "author": "https://github.com/hans2103/tabs/graphs/contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hans2103/tabs/"
+    "url": "git+https://github.com/hans2103/tabs.git"
   },
+  "author": "https://github.com/hans2103/tabs/graphs/contributors",
   "bugs": {
     "url": "https://github.com/hans2103/tabs/issues"
   },
-  "license": "MIT",
+  "homepage": "https://github.com/hans2103/tabs#readme",
+  "config": {
+    "src": "src",
+    "dist": "dist",
+    "port": "8227",
+    "proxy": "tabs.test"
+  },
+  "browserslist": [
+    "> 2% in NL",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "reinstall": "rimraf ./node_modules && yarn install",
+    "prestart": "node ./build/tasks/build.js",
+    "start": "node ./build/tasks/browser-sync.js"
+  },
   "devDependencies": {
-    "caniuse-db": "*",
-    "grunt": "^1.0.4",
-    "grunt-autoprefixer": "^3.0.4",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-sass": "^3.0.2",
-    "jit-grunt": "^0.10.0",
-    "time-grunt": "^2.0.0"
+    "autoprefixer": "^9.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-minify-builtins": "^0.5.0",
+    "babel-preset-minify": "^0.5.0",
+    "browser-sync": "^2.26.5",
+    "copyfiles": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "lsof": "^0.1.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.12.0",
+    "postcss-clean": "^1.1.0",
+    "postcss-cli": "^6.1.2",
+    "ps-node": "^0.1.6",
+    "rimraf": "^2.6.3",
+    "stylelint": "^10.0.1",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^3.0.0",
+    "stylelint-scss": "^3.8.0"
   }
 }
