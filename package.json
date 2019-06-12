@@ -2,7 +2,7 @@
   "name": "tabs",
   "version": "1.3.0",
   "license": "GPL-3.0",
-  "description": "Example of Tabs with Automatic Activation",
+  "description": "Example of Tabs with Automatic Activation - https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/tabs/tabs-1/tabs.html",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hans2103/tabs.git"
