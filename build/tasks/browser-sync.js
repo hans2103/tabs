@@ -2,38 +2,45 @@
 
 'use strict';
 
+require('dotenv').config();
+
 const serve = require('../modules/browser-sync');
 const lsof = require('../modules/lsof');
+
 const babel = require('../tasks/babel');
 const postcss = require('../tasks/postcss');
 const sass = require('../tasks/sass');
 
-const bs = require('browser-sync')
-  .create();
+const bs = require('browser-sync').create();
 const path = require('path');
-const currentPath = process.cwd();
 const port = process.env.npm_package_config_port;
 const src = process.env.npm_package_config_src;
 const dest = process.env.npm_package_config_dist;
+const proxy = process.env.PROXY || process.env.npm_package_config_proxy;
 
 let debug = false;
 
 // Clear the port
 lsof({
-  port: port
+    port: port
 });
 
 // Start serving
 serve({
-  notify: true,
-  open: true,
-  watchEvents: ['change', 'add'],
-  proxy: process.env.npm_package_config_proxy,
-  port: process.env.npm_package_config_port,
-  files: [
-    `${dest}/css/*.css`,
-    `${dest}/js/*.js`
-  ]
+    notify: true,
+    open: true,
+    watchEvents: ['change', 'add'],
+    proxy: proxy,
+    port: process.env.npm_package_config_port,
+    files: [
+        `${dest}/css/*.css`,
+        `${dest}/icons/*.svg`,
+        `${dest}/js/*.js`,
+        `${dest}/images/*.*`,
+        `${dest}/images/favicon/*.*`,
+        `${dest}/**/*.php`,
+        `${dest}/*.php`
+    ]
 });
 
 /**
@@ -51,49 +58,103 @@ serve({
  */
 const debounce = (callback, time = 250, interval) => (...args) => clearTimeout(interval, interval = setTimeout(callback, time, ...args));
 
+const regexIcon = RegExp('icons[\\/][^_]*[\\/]*\.svg');
+const regexSprite = RegExp('icons[\\/]_sprite\/.*\.svg');
+const regexScript = RegExp('scripts[\\/].*\.js');
+const regexJs = RegExp('js[\\/].*\.js');
+const regexScss = RegExp('scss[\\/].*\.scss');
+const regexCss = RegExp('[\\/]css[\\/].*\.css');
 
 bs.watch(`${src}/**`, (event, file) => {
-  if (event === 'add' || event === 'change') {
 
-    // Css files changes
-    if (file.match(/css\/.*\.css/)) {
-      if (debug) {
-        console.log('css: ' + event + ' - ' + file);
-      }
+    if (event === 'add' || event === 'change') {
 
-      debounce(
-        postcss({
-          file: path.basename(file)
-        })
-        , 300);
+        // Icon files changes
+        if (regexIcon.test(file)) {
+            if (debug) {
+                console.log('icons: ' + event + ' - ' + file);
+            }
+
+            svgo({
+                src: `${src}/icons`,
+                file: path.basename(file),
+                dest: `${dest}/icons`,
+                type: 'file'
+            });
+        }
+
+        // Icon Sprite files changes
+        if (regexSprite.test(file)) {
+            if (debug) {
+                console.log('icons: ' + event + ' - ' + file);
+            }
+
+            svgo({
+                src: `${src}/icons/_sprite`,
+                file: path.basename(file),
+                dest: `${dest}/icons`,
+                type: 'file'
+            });
+            svgostore();
+        }
+
+        // Css files changes
+        if (regexCss.test(file)) {
+            if (debug) {
+                console.log('css: ' + event + ' - ' + file);
+            }
+
+            debounce(
+                postcss({
+                    file: path.basename(file)
+                })
+                , 300);
+        }
+
+        // Script files changes
+        if (regexScript.test(file)) {
+            if (debug) {
+                console.log('js: ' + event + ' - ' + file);
+            }
+
+            concat({
+                file: path.basename(file)
+            });
+        }
+
+        // JS files changes
+        if (regexJs.test(file)) {
+            if (debug) {
+                console.log('js: ' + event + ' - ' + file);
+            }
+
+            babel({
+                file: path.basename(file)
+            });
+        }
     }
 
-    // JS files changes
-    if (file.match(/js\/.*\.js/)) {
-      if (debug) {
-        console.log('js: ' + event + ' - ' + file);
-      }
+    if (event === 'change') {
+        // Sass files changes
+        if (regexScss.test(file)) {
+            if (debug) {
+                console.log('sass: ' + event + ' - ' + file);
+            }
 
-      babel({
-        file: path.basename(file)
-      });
+            debounce(
+                sass({
+                    file: path.basename(file)
+                })
+                , 300);
+        }
     }
-  }
 
-  if (event === 'change') {
-    // Sass files changes
-    if (file.match(/scss\/.*\.scss/)) {
-      if (debug) {
-        console.log('sass: ' + event + ' - ' + file);
-      }
-
-      debounce(
-        sass({
-          file: path.basename(file)
-        })
-        , 300);
+    if (event === 'unlink') {
+        // Icon Sprite files changes
+        if (regexSprite.test(file)) {
+            svgostore();
+        }
     }
-  }
 });
 
 /* eslint-enable */

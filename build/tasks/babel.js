@@ -9,14 +9,14 @@ const dest = process.env.npm_package_config_dist + '/js';
 
 module.exports = options => {
 
-  const file = options.file;
+	const file = options.file;
 
-  if (file === 'tabs.js') {
-    babel({
-      src: `${src}/tabs.js`,
-      dest: `${dest}/tabs.js`
-    });
-  }
+	if (file === 'tabs.js') {
+		babel({
+			src: `${src}/tabs.js`,
+			dest: `${dest}/tabs.js`
+		});
+	}
 
 };
 

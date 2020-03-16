@@ -9,19 +9,16 @@
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md
  */
 
-const fs = require('fs-extra');
+const fse = require('fs-extra');
 
-module.exports = options => {
+module.exports = dir => {
+    fse.ensureDir(dir, err => {
+        if (err) {
+            return console.error(err);
+        }
 
-  const dir = options.dir;
-
-  fs.ensureDir(dir, err => {
-    if (err) {
-      return console.error(err);
-    }
-
-    console.log(' Created ' + dir);
-  });
+        console.log(' Exists ' + dir);
+    });
 };
 
 /* eslint-enable */

@@ -13,27 +13,27 @@ const ps = require('ps-node');
 
 module.exports = options => {
 
-  const port = options.port;
+    const port = options.port;
 
-  lsof.rawTcpPort(port, data => {
-    for (let key in data) {
-      if (data.hasOwnProperty(key)) {
-        let pid = data[key].pid
-          ,
-          state = data[key].state;
+    lsof.rawTcpPort(port, data => {
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                let pid = data[key].pid
+                    ,
+                    state = data[key].state;
 
-        if (state === 'listen') {
-          ps.kill(pid, err => {
-            if (err) {
-              throw err;
-            } else {
-              console.log(' Killed process with pid ' + pid);
+                if (state === 'listen') {
+                    ps.kill(pid, err => {
+                        if (err) {
+                            throw err;
+                        } else {
+                            console.log(' Killed process with pid ' + pid);
+                        }
+                    });
+                }
             }
-          });
         }
-      }
-    }
-  });
+    });
 };
 
 /* eslint-enable */

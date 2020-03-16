@@ -9,14 +9,14 @@ const dest = process.env.npm_package_config_dist + '/css';
 
 module.exports = options => {
 
-  const file = options.file;
+    const file = options.file;
 
-  if(file === 'tabs.css') {
-    postcss({
-      src: `${src}/${file}`,
-      dest: `${dest}/${file}`
-    });
-  }
+    if (file === 'tabs.css') {
+        postcss({
+            src: `${src}/${file}`,
+            dest: `${dest}/${file}`
+        });
+    }
 
 };
 

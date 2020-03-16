@@ -10,24 +10,24 @@ const fs = require('fs');
 
 module.exports = options => {
 
-  const src = options.src;
-  const dest = options.dest;
+    const src = options.src;
+    const dest = options.dest;
 
-  fs.symlinkSync(src, dest + '-tmp', err => {
-    if (err) {
-      return console.error(err);
-    }
+    fs.symlinkSync(src, dest + '-tmp', err => {
+        if (err) {
+            return console.error(err);
+        }
 
-    console.log(' Symlink tmp created ' + src + ' to ' + dest + '-tmp');
-  });
+        console.log(' Symlink tmp created ' + src + ' to ' + dest + '-tmp');
+    });
 
-  fs.rename(dest + '-tmp', dest, err => {
-    if (err) {
-      return console.error(err);
-    }
+    fs.rename(dest + '-tmp', dest, err => {
+        if (err) {
+            return console.error(err);
+        }
 
-    console.log(' Symlink created ' + src + ' to ' + dest);
-  });
+        console.log(' Symlink created ' + src + ' to ' + dest);
+    });
 
 };
 
