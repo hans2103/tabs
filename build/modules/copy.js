@@ -6,21 +6,21 @@
  * Copy a file/directory from one location to another
  */
 
-const fs = require('fs-extra');
+const fse = require('fs-extra');
 
 module.exports = options => {
 
-  const src = options.src;
-  const dest = options.dest;
+    const src = options.src;
+    const dest = options.dest;
 
 
-  fs.copy(src, dest, err => {
-    if (err) {
-      return console.error(err);
-    }
+    fse.copy(src, dest, err => {
+        if (err) {
+            return console.error(err);
+        }
 
-    console.log(' Copied ' + src + ' to ' + dest);
-  });
+        console.log(' Copied ' + src + ' to ' + dest);
+    });
 
 };
 

@@ -8,13 +8,13 @@ const dest = process.env.npm_package_config_dist;
 
 module.exports = options => {
 
-  clean({
-    dir: `${dest}/css`
-  });
+    clean({
+        dir: `${dest}/css`
+    });
 
-  clean({
-    dir: `${dest}/js`
-  });
+    clean({
+        dir: `${dest}/js`
+    });
 
 };
 

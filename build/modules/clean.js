@@ -6,15 +6,15 @@
  * Clean a directory
  */
 
-const fs = require('fs-extra');
+const fse = require('fs-extra');
 
 module.exports = options => {
 
-  const dir = options.dir;
+    const dir = options.dir;
 
-  fs.removeSync(dir);
+    fse.removeSync(dir);
 
-  console.log(' Removed ' + dir);
+    console.log(' Removed ' + dir);
 
 };
 

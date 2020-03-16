@@ -11,6 +11,7 @@ const postcss = require('../tasks/postcss');
 const babel = require('../tasks/babel');
 
 const currentPath = process.cwd();
+const dest = process.env.npm_package_config_dist;
 
 // prebuild
 symlink({
@@ -22,6 +23,12 @@ symlink({
 copy({
     src: `hooks/CodeSniffer.conf.dist`,
     dest: `hooks/CodeSniffer.conf`
+});
+
+// Live accessibilty checker
+copy({
+    src: `node_modules/@khanacademy/tota11y/dist/tota11y.min.js`,
+    dest: `${dest}/js/tota11y.min.js`
 });
 
 // clean and create

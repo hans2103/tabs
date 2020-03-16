@@ -6,15 +6,11 @@ const mkdirp = require('../modules/mkdirp');
 
 const dest = process.env.npm_package_config_dist;
 
-module.exports = options => {
+module.exports = () => {
 
-  mkdirp({
-    dir: `${dest}/css`
-  });
+    mkdirp(`${dest}/css`);
 
-  mkdirp({
-    dir: `${dest}/js`
-  });
+    mkdirp(`${dest}/js`);
 
 };
 
